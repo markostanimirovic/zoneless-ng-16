@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: '<h1>{{ title() }}</h1>',
 })
 export class AppComponent {
-  title = 'zoneless-ng-16';
+  title = signal('zoneless-ng-16');
+
+  constructor() {
+    effect(() => console.log(this.title()));
+  }
 }
